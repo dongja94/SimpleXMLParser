@@ -1,15 +1,14 @@
 package com.begentgroup.xmlparser;
 
+import org.xml.sax.Attributes;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Stack;
-
-import org.xml.sax.Attributes;
 
 class DataCollector {
 	public static HashMap<Class,ClassInfoTable> sClassInfo = new HashMap<Class, ClassInfoTable>();
@@ -105,6 +104,9 @@ class DataCollector {
 					e.printStackTrace();
 				}
 			}
+			if (unit.defaultNameField != null) {
+				setPrimitiveValue(unit.mObject, unit.defaultNameField.f, content);
+			}
 			mStack.pop();
 		} else if (unit.level + 1 == level) {
 			try {
@@ -133,6 +135,7 @@ class DataCollector {
 					}
 					break;
 				case Utils.CLASS_OBJECT :
+
 					break;
 				}
 			} catch (IllegalArgumentException e) {
@@ -164,6 +167,10 @@ class DataCollector {
 			Field[] fields = table.fields;
 						
 			for (Field field : fields) {
+				if (Utils.isDefaultValueField(field)) {
+					childUnit.defaultNameField = table.defaultField;
+					continue;
+				}
 				String name = Utils.getFieldName(field);
 				FieldInfo fi = table.fieldInfos.get(name);
 				int type = fi.fieldType;

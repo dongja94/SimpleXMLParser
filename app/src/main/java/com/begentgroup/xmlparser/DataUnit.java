@@ -8,5 +8,6 @@ class DataUnit {
 	ClassInfoTable tables;
 	Class clazz;
 	int level;
+	FieldInfo defaultNameField;
 	HashMap<String,ArrayData> arrayData = new HashMap<String,ArrayData>();
 }

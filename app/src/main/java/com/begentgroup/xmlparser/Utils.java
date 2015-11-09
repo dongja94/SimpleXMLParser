@@ -53,9 +53,13 @@ class Utils {
 				info.componentType = Utils.getClassType(info.component);
 				break;
 			}
-			String name = getFieldName(field);
-			info.name = name;
-			table.fieldInfos.put(name, info);
+			if (isDefaultValueField(field)) {
+				table.defaultField = info;
+			} else {
+				String name = getFieldName(field);
+				info.name = name;
+				table.fieldInfos.put(name, info);
+			}
 		}
 		return table;
 	}
@@ -70,6 +74,11 @@ class Utils {
 			}
 		}
 		return name;
+	}
+
+	public static boolean isDefaultValueField(Field field) {
+		DefaultValueField dv = field.getAnnotation(DefaultValueField.class);
+		return dv!=null;
 	}
 	
 }

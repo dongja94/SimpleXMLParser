@@ -72,7 +72,7 @@ class DataCollector {
 
 				FieldInfo fi = unit.tables.fieldInfos.get(qName);
 				if (fi == null) {
-					return;
+					continue;
 				}
 				Field f = fi.f;
 				f.setAccessible(true);

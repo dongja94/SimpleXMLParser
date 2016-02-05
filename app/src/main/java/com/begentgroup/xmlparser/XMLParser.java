@@ -1,5 +1,9 @@
 package com.begentgroup.xmlparser;
 
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -7,10 +11,6 @@ import java.util.HashMap;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 
 public class XMLParser {
 	
@@ -47,8 +47,9 @@ public class XMLParser {
 		return sb.toString();
 	}
 	
-	public <T> T fromXml(InputStream is, String firstElement, Class<T> classOfT) {
+	public <T> T fromXml(InputStream is, String firstElement, Class<T> classOfT) throws SimpleParseException {
 		T obj = null;
+		Throwable t = null;
 		try {
 			obj = classOfT.newInstance();
 
@@ -61,21 +62,28 @@ public class XMLParser {
 
 				InputSource src = new InputSource(is);
 				reader.parse(src);
+				return obj;
 			} catch (ParserConfigurationException e) {
 				e.printStackTrace();
+				t = e;
 			} catch (SAXException e) {
 				e.printStackTrace();
+				t = e;
 			} catch (IOException e) {
 				e.printStackTrace();
+				t = e;
 			}		
 			
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			t = e;
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			t = e;
 		}
-		return obj;
+		if (t != null) {
+			throw new SimpleParseException(t.getMessage(), t);
+		}
+		return null;
 	}
 }

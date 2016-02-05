@@ -139,11 +139,11 @@ class DataCollector {
 					break;
 				}
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				throw new SimpleParseException(e.getMessage(), e);
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				throw new SimpleParseException(e.getMessage(), e);
 			}
 		}
 	}
@@ -236,14 +236,14 @@ class DataCollector {
 				f.set(obj, value);				
 			}
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new SimpleParseException(e.getMessage(), e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new SimpleParseException(e.getMessage(), e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new SimpleParseException(e.getMessage(), e);
 		}
 		return true;
 	}
@@ -273,12 +273,12 @@ class DataCollector {
 				collection.add(value);				
 			}
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new SimpleParseException(e.getMessage(), e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+			throw new SimpleParseException(e.getMessage(), e);
+		}
 		return true;
 	}
 

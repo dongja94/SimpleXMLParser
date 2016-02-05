@@ -2,7 +2,6 @@ package com.begentgroup.xmlparser;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -95,11 +94,11 @@ class XMLGenerator {
 							sb.append(generatingXML(cinfo.name, v, cinfo));
 						}
 					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
+						throw new SimpleParseException(e.getMessage(), e);
 					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
+						throw new SimpleParseException(e.getMessage(), e);
 					}
 				}
 			}

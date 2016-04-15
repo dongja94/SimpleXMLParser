@@ -1,28 +1,15 @@
-apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'simple-xml-parser'
-
-    publishedGroupId = 'com.begentgroup.simplexmlparser'
-    libraryName = 'SimpleXMLParser'
-    artifact = 'simple-xml-parser'
-
-    libraryDescription = 'simple xml parser is like gson'
-
-    siteUrl = 'https://github.com/dongja94/SimpleXMLParser'
-    gitUrl = 'https://github.com/dongja94/SimpleXMLParser.git'
-
-    libraryVersion = '0.1.1'
-
-    developerId = 'seungik'
-    developerName = 'yon seingik'
-    developerEmail = 'dongja94@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+publish {
+    userOrg = 'seungik'
+    groupId = 'com.begentgroup.xmlparser'
+    artifactId = 'simple-xml-parser'
+    publishVersion = '0.1.2'
+    desc = 'Simple XML Parser is XML Parser like Gson'
+    website = 'https://github.com/dongja94/SimpleXMLParser'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
 }
 
 android {

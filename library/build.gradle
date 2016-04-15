@@ -1,0 +1,47 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'simple-xml-parser'
+
+    publishedGroupId = 'com.begentgroup.simplexmlparser'
+    libraryName = 'SimpleXMLParser'
+    artifact = 'simple-xml-parser'
+
+    libraryDescription = 'simple xml parser is like gson'
+
+    siteUrl = 'https://github.com/dongja94/SimpleXMLParser'
+    gitUrl = 'https://github.com/dongja94/SimpleXMLParser.git'
+
+    libraryVersion = '0.1.1'
+
+    developerId = 'seungik'
+    developerName = 'yon seingik'
+    developerEmail = 'dongja94@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 18
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:18.0.0'
+}

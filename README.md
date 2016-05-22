@@ -14,7 +14,7 @@ Use the Tag name of the XML Element and Attribute names like Gson in turn to mat
             <item>
         </channel>
     </rss>
-XML 데이터
+XML Data
 
     public class Channel {
         String title;
